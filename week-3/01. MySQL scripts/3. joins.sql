@@ -272,6 +272,40 @@ SELECT
 
 
 
+USE employees;
+-- Best paid department?
+
+-- 1. WHAT: select columns: salary, dept_name
+-- 2. WHERE: Tables: salaries, employees, dept_emp, departments
+-- 3. HOW: Keys: emp_no, emp_no, dept_no
+
+-- 4. GROUP BY
+SELECT 
+    dept_name, -- Table 4: departments
+	AVG(salary) AS  the_mean -- Tabla 1: salaries
+    
+	FROM salaries
+    JOIN employees
+		ON salaries.emp_no = employees.emp_no
+    JOIN dept_emp
+		ON employees.emp_no = dept_emp.emp_no
+    JOIN departments
+		ON dept_emp.dept_no = departments.dept_no
+
+GROUP BY dept_name
+ORDER BY the_mean DESC;
+
+
+
+
+
+
+
+
+
+
+
+
     
     
     
