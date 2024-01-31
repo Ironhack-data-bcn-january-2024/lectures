@@ -228,6 +228,50 @@ SELECT
 		HAVING the_count > 20000 -- After aggregation is done
     ORDER BY the_count DESC;
 
+
+USE publications;
+-- An identifying relationship is one where the child table
+-- cannot be uniquely identified without its parent. T
+
+-- dotted line / discontinous: non-identifying relationship. on its own
+-- non dotted line / con tintous: identifying relationship. cant on its own
+
+/* book -- discontinout
+author (FK)
+title(FN)
+content
+*/
+
+/* book -- continuous
+ISBN (PK) 
+content
+*/
+
+
+-- The names of the titles published
+
+-- 1. Tables
+-- 2. Columns
+-- 3. Keys
+
+select * from titles;
+-- 1. WHAT: select columns: title, au_lname
+-- 2. WHERE: Tables: titles, titleauthor, authors
+-- 3. HOW: Keys: title_id, au_id
+
+SELECT 
+	title, -- Table 1: titles
+    au_lname -- Table 3: authors
+    
+    FROM 
+		titles
+	JOIN titleauthor
+		ON titles.title_id = titleauthor.title_id
+    JOIN authors
+		ON titleauthor.au_id = authors.au_id;
+
+
+
     
     
     
